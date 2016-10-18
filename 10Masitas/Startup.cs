@@ -8,7 +8,7 @@ namespace _10Masitas
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+          
         }
     }
 }
