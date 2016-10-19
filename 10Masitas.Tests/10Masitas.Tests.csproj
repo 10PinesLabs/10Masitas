@@ -84,7 +84,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\OrderTest.cs" />
+    <Compile Include="Controllers\OrderControllerTest.cs" />
+    <Compile Include="Domain\OrderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
