@@ -206,6 +206,7 @@
     <Compile Include="DataBase\Mappings\OrderMap.cs" />
     <Compile Include="DataBase\SessionManager.cs" />
     <Compile Include="Domain\ListExtensions.cs" />
+    <Compile Include="Domain\LunchManagmentSystem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -14,5 +14,10 @@ namespace _10Masitas.Tests.Domain
         {
             return MasitasApplication.Create();
         }
+
+        public LunchManagmentSystem CreateLunchManagementSystem()
+        {
+            return new LunchManagmentSystem();
+        }
     }
 }

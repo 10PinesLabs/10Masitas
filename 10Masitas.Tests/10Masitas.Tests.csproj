@@ -86,7 +86,8 @@
   <ItemGroup>
     <Compile Include="Controllers\OrderControllerTest.cs" />
     <Compile Include="Domain\MasitasApplicationTest.cs" />
-    <Compile Include="Domain\OrderTest.cs" />
+    <Compile Include="Domain\LunchManagmentSystemTest.cs" />
+    <Compile Include="Domain\xxxTest.cs" />
     <Compile Include="Domain\TestObjectProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
