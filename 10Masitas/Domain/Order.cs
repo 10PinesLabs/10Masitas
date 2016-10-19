@@ -1,30 +1,36 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 
 namespace _10Masitas.Domain
 {
     public class Order
     {
-        public IList FellowDinners { get; set; }
+        public virtual Guid Id { get; protected set; }
+        public virtual IList<string> FellowDinners { get; set; }
 
         public Order()
         {
             FellowDinners = new List<string>();
         }
 
-        public bool IsActive()
+        public virtual bool IsActive()
         {
             return true;
         }
 
-        public bool HasFellowsDinners()
+        public virtual bool HasFellowsDinners()
         {
             return !FellowDinners.IsEmpty();
         }
 
-        public void AddFellowDinner(string aFellowDinner)
+        public virtual void AddFellowDinner(string aFellowDinner)
         {
             FellowDinners.Add(aFellowDinner);
+        }
+
+        public virtual bool ContainsFellowDinner(string aFellowDinner)
+        {
+            return FellowDinners.Contains(aFellowDinner);
         }
     }
 }

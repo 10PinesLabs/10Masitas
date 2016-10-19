@@ -29,7 +29,7 @@ namespace _10Masitas.Tests.Domain
         }
 
         [TestMethod]
-        public void WhenAnOrderIsActiveThenItCanAddAFellowDinner()
+        public void WhenAnOrderIsActiveThenItCanAddAFellowDinners()
         {
             order.AddFellowDinner("Marcos Alvarenga");
             

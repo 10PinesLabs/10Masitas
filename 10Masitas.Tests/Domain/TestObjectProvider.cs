@@ -1,4 +1,5 @@
-﻿using _10Masitas.Domain;
+﻿using _10Masitas.Applications;
+using _10Masitas.Domain;
 
 namespace _10Masitas.Tests.Domain
 {
@@ -7,6 +8,11 @@ namespace _10Masitas.Tests.Domain
         public Order NewOrder()
         {
             return new Order();
+        }
+
+        public MasitasApplication NewMasitasApplication()
+        {
+            return MasitasApplication.Create();
         }
     }
 }
