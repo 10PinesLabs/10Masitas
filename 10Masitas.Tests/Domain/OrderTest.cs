@@ -6,27 +6,31 @@ namespace _10Masitas.Tests.Domain
     [TestClass]
     public class OrderTest
     {
+        private TestObjectProvider objectProvider;
+        private Order order;
+
+        [TestInitialize]
+        public void SetUp()
+        {
+            objectProvider = new TestObjectProvider();
+            order = objectProvider.NewOrder();
+        }
+
         [TestMethod]
         public void WhenCreateAnOrderThenIsActive()
         {
-            var order = new Order();
-
             Assert.IsTrue(order.IsActive());
         }
 
         [TestMethod]
         public void WhenCreateAnOrderThenItHasNoFellowsDinners()
         {
-            var order = new Order();
-
             Assert.IsFalse(order.HasFellowsDinners());
         }
 
         [TestMethod]
         public void WhenAnOrderIsActiveThenItCanAddAFellowDinner()
         {
-            var order = new Order();
-
             order.AddFellowDinner("Marcos Alvarenga");
             
             Assert.IsTrue(order.HasFellowsDinners());
