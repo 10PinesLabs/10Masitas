@@ -1,4 +1,5 @@
-﻿using NHibernate;
+﻿using System;
+using NHibernate;
 using _10Masitas.DataBase;
 using _10Masitas.Domain;
 
@@ -20,22 +21,61 @@ namespace _10Masitas.Applications
 
         public Order CreateOrder()
         {
-            var order = new Order();
-            session.SaveOrUpdate(order);
-            return order;
+            return DuringTransactionDo(() =>
+            {
+                var order = new Order();
+                session.Save(order);
+                return order;
+            });
         }
 
         public void AddFellowDinnerTo(Order anOrder, string aFellowDinner)
         {
-            anOrder.AddFellowDinner(aFellowDinner);
-            session.SaveOrUpdate(anOrder);
+            DuringTransactionDoWithOutReturn(() =>
+            {
+                anOrder.AddFellowDinner(aFellowDinner);
+                session.Update(anOrder);
+            });
         }
 
         public bool IsAFellowDinner(Order anOrder, string aFellowDinner)
         {
-            var orderdb = session.QueryOver<Order>().Where(uS => uS.Id == anOrder.Id).SingleOrDefault<Order>();
-            
-            return orderdb.ContainsFellowDinner(aFellowDinner);
+            return anOrder.ContainsFellowDinner(aFellowDinner);
+        }
+
+        private T DuringTransactionDo<T>(Func<T> aFunction)
+        {
+            using (var transaction = session.BeginTransaction())
+            {
+                try
+                {
+                    var ret = aFunction();
+                    transaction.Commit();
+                    return ret;
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        private void DuringTransactionDoWithOutReturn(Action anAction)
+        {
+            using (var transaction = session.BeginTransaction())
+            {
+                try
+                {
+                    anAction();
+                    transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
         }
     }
 }
